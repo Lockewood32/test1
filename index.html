@@ -1,233 +1,31 @@
-
 <html>
 <head>
-<meta charset="utf-8">
-<title>Drive with Google+ Sign-In</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script>
-  var FILENAME = 'appsettings.json';
-  var fileId = null;
-  var state = {
-    aninput: '',
-    someText: '',
-    selectList: undefined,
-    checkbox: {A: false, B: false}
-  }
-  
-  function stateToForm() {
-    for(key in state) {
-      if(key == "checkbox") {
-        for(box in state[key]) {
-          $("#checkbox" + box).prop("checked",state[key][box]);
-        }
-      } else {
-        $("#" + key).val(state[key]);
-      }
-    }
-    $('#in').show();
-  }
-  
-  function formToState() {
-    for(key in state) {
-      if(key == 'checkbox') {
-        for(box in state[key]) {
-          state[key][box] = $("#checkbox" + box).prop("checked");
-        }
-      } else {
-        state[key] = $("#" + key).val();
-      }
-    }
-  }
-  
-  function loaded() {
-    $('#settings').submit(function() {
-      formToState();
-      console.log(state);
-      writeState();
-      return false;
-    });
-    $('#discon').click(function() {
-      var token = gapi.auth.getToken();
-      var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token=' +
-            token.access_token;
-      $.ajax({
-          type: 'GET',
-          url: revokeUrl,
-          async: false,
-          contentType: "application/json",
-          dataType: 'jsonp',
-          success: function(nullResponse) {
-            $('#myGsignin').show();
-            $('#in').hide();
-          }
-        });
-    })
-  }
-  
-  function onSignIn(authResult) {
-    //console.log(authResult);
-    if (authResult['access_token']) {
-      console.log("Signed in");
-      $('#myGsignin').hide();
-
-      gapi.client.load('drive', 'v2', function() {
-        console.log('Loaded drive client');
-        readState();
-      });
-    } else {
-      console.log("Not signed in");
-      $('#myGsignin').show();
-    }
-  }
-  
-  function checkFileId() {
-    if(fileId != null) {
-      return true;
-    }
-    var request = gapi.client.drive.files.list({
-      'q': '\'appdata\' in parents'
-    });
-    request.execute(function(resp) {
-      //console.log(resp);
-      for (i in resp.items) {
-        //console.log(resp.items[i]);
-        if(resp.items[i].title == FILENAME) {
-          fileId = resp.items[i].id;
-          readState();
-          return;
-        }
-      }
-      // If we have nothing, use the defaults.
-      stateToForm();
-    });
-    return false;
-  }
-  
-  function readState() {
-    if (!checkFileId()) {
-      return;
-    }
-    var request = gapi.client.drive.files.get({
-      'fileId': fileId
-    });
-    request.execute(function(resp) {
-        console.log(resp);
-        if (resp.id) {
-          var token = gapi.auth.getToken();
-          $.ajax(resp.downloadUrl, {
-            headers: {Authorization: 'Bearer ' + token.access_token},
-            success: function(data) {
-              state = data;
-              stateToForm();
-              console.log(data);
-            }
-          });
-        }
-    });
-  }
-
-  function writeState() {
-    gapi.client.load('drive', 'v2', function() {
-      var metadata = { 
-        title: FILENAME, 
-        mimeType: 'application/json',
-        parents: [{id: 'appdata'}]
-      }
-      data = new FormData();
-      data.append("metadata", new Blob([ JSON.stringify(metadata) ], { type: "application/json" }));
-      data.append("file", new Blob([ JSON.stringify(state) ], { type: "application/json" }));
-      
-      var token = gapi.auth.getToken();
-      var up = fileId != null ? '/' + fileId : '';
-      $.ajax("https://www.googleapis.com/upload/drive/v2/files" + up + "?uploadType=multipart", {
-        data: data,
-        headers: {Authorization: 'Bearer ' + token.access_token},
-        contentType: false,
-        processData: false,
-        type: fileId != null ? 'PUT' : 'POST',
-        success: function(data) {
-          console.log("File written");
-        }
-      })
-    });
-  }
-</script>
-<style>
-  label {
-    clear: left;
-  }
-</style>
+<link href="/test1/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div class="container">
-  <h3>Settings</h3>
-<div style="display: none" id="myGsignin"><span 
-  class="g-signin"
-  data-cookiepolicy="single_host_origin"
-  data-callback="onSignIn"
-  data-clientid="156329544494-iclr17s8shmsnvf1tkvjokc647q4ka50.apps.googleusercontent.com"
-  data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/drive.appdata">
-</span></div>
 
-<div id="in" style="display:none">
-  <form id="settings" action="">
-    <div class="form-group">
-      <label for="aninput">An Input</label>
-      <input class="form-control" type="text" id="aninput" />
-    </div>
-    
-    <div class="form-group">
-      <label for="someText">Some Text</label>
-      <textarea class="form-control" id="someText"></textarea>
-    </div>
-    
-    <div class="form-group">
-      <!-- Label and select list -->
-      <label for="selectList">Select List</label>
-      <select class="form-control" id="selectList">
-        <option value="Option 1">Option 1</option>
-        <option value="Option 2">Option 2</option>
-        <option value="Option 3">Option 3</option>
-      </select>
-    </div>
+<header>Header</header>
 
-    <div class="form-group">
-    <!-- Wrap checkbox/radio button groups in fieldsets -->
-    <fieldset>
-      <!-- Give the fieldset a label -->
-      <label for="">Checkboxes</label>
+<div style="margin-top: 100px; background-color: #333;"></div>
 
-      <div class="checkbox">
-      <!-- Wrap each checkbox in a label, then give it the input and span for the text option -->
-      <label for="regularCheckbox">
-        <input type="checkbox" id="checkboxA" value="checkbox 1" />
-        <span>Definitely A</span>
-      </label>
-      </div>
+<h2><span  class="line-center unselectable">Test:</span></h2>
+<div id='content'></div>
 
-      <div class="checkbox">
-      <label for="secondRegularCheckbox">
-        <input type="checkbox" id="checkboxB" value="checkbox 2" />
-        <span>Certainly B</span>
-      </label>
-      </div>
-    </fieldset>
-    </div>
-
-    <button class="btn btn-default" type="submit">Save Settings</button>
-  </form>
-  <p style="text-align: center;"><button id="discon">Disconnect</button></p>
+<!---invisible template for programmatically generating cells --->
+<div style="display: none">
+  <li id='cellTemplate' class='pokemonCell unselectable'>
+    <div id='cellNameTemplate' class='pokemonCellName'></div>
+    <img id='cellImageTemplate'>
+    <div id='cellNumberTemplate' class='pokemonCellNumber'>001</div>
+  </li>
+  <div id="spacerTemplate" style="margin-top: 100px; background-color: #333;"></div>
+  <h2 id='headingTemplate'><span  class="line-center unselectable">HEADING</span></h2>
 </div>
-</div>
-<!-- Place this asynchronous JavaScript just before your </body> tag -->
-<script type="text/javascript">
-  (function() {
-   var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-   po.src = 'https://apis.google.com/js/client:platform.js?onload=loaded';
-   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
- })();
-</script>
+
+<footer>Footer</footer>
+
 </body>
-</html>
+<script src="/pkmnData.js" type="text/javascript"></script>
+<script src="/script.js" type="text/javascript"></script>
+
+</html
