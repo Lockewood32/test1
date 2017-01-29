@@ -11,7 +11,6 @@ for (cellData in testData) {
   content.push(cellTemplate);
   
   headingIndex++;
-  console.log(headingIndex);
   if (headingIndex >= 30){
     headingIndex = 0;
     content.push(document.getElementById("headingTemplate").outerHTML);
@@ -19,7 +18,6 @@ for (cellData in testData) {
 }
 content.push(document.getElementById("spacerTemplate").outerHTML);
 content = content.join("");
-console.log(headingIndex);
 document.getElementById('content').innerHTML = content;
 
 
