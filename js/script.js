@@ -19,7 +19,7 @@ for (cellData in testData) {
 }
 content.push(document.getElementById("spacerTemplate").outerHTML);
 content = content.join("");
-
+console.log(headingIndex);
 document.getElementById('content').innerHTML = content;
 
 
