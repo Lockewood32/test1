@@ -1,4 +1,4 @@
-﻿var testData = var testData = {
+var testData = {
   "001": { "num":"001", "name":"Bulbasaur"},
   "002": { "num":"002", "name":"Ivysaur"},
   "003": { "num":"003", "name":"Venusaur"},
