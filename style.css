@@ -1,0 +1,129 @@
+.unselectable{
+  -webkit-user-select: none; /* Chrome/Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+}
+
+.line-center{
+    margin:0;padding:0 10px;
+    background:#f3f5f6; //jsfiddle bg color, use #ffffff for plain white
+    display:inline-block;
+}
+h2{
+    text-align:center;
+    position:relative;
+    z-index:2;
+}
+h2:after{
+    content:"";
+    position:absolute;
+    top:50%;
+    left:0;
+    right:0;
+    //border-top:solid 1px red;
+    border-top: 8px double black;
+    z-index:-1;
+}
+
+.pokemonCell
+{
+    display:inline-block;
+    margin-left: -4px;
+    width: 16.66%;
+    //min-width: 90px;
+    text-align: center;
+    padding: 5px 0;
+    background-color: #aabbcc;
+}
+
+.pokemonCellNumber
+{
+    font-family:"Menlo", "Lucida Console", Monaco, monospace;
+    font-size:24pt;
+}
+
+.pokemonCellName
+{
+    font-family:"Helvetica", sans-serif;
+    font-weight:lighter;
+    font-size:10pt;
+    line-height:20px;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.cell{
+    display: inline-block;
+    height: 150px;
+    width: 150px;
+    text-align: center;
+    padding: 0px;
+    margin: 4px ;
+    background-color: #fff000;
+    color: #000000;
+}
+
+.cellTop{
+  border: 1px solid black;
+}
+
+.cellCenter{
+  border: 1px solid black;
+}
+
+.cellBottom{
+  border: 1px solid black;
+}
+
+.cellContents{
+  //margin-top: 25%;
+}
+
+header {
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	color:#CCC;
+	background:#333;
+	padding:20px;
+  z-index: 3;
+}
+footer {
+	position:fixed;
+	bottom:0px;
+	left:0px;
+	width:100%;
+	color:#CCC;
+	background:#333;
+	padding:8px;
+  z-index: 3;
+}
+
+//test of menu sprites
+.menu-sprite{
+    display:inline-block;
+    background-color:transparent;
+    background-repeat:no-repeat;
+    background-origin:content-box;
+    vertical-align:middle;
+    text-indent:-999em
+}
+.menu-sprite{
+    background-image:url(https://raw.githubusercontent.com/legacy-icons/vendor-icons/master/dist/sprite-32x32/vendor-icons.png);
+    width:32px;
+    height:32px;
+    margin:0 0
+    //width: 1.875em
+}
+.menu-sprite.b000{background-position:0 0}
+.menu-sprite.b001{background-position:-32px 0}
+.menu-sprite.b002{background-position:-64px 0}
+.menu-sprite.b003{background-position:-96px 0}
+.menu-sprite.b004{background-position:0 -32px}
+.menu-sprite.b005{background-position:-32px -32px}
+.menu-sprite.b006{background-position:-64px -32px}
+.menu-sprite.b007{background-position:-96px -32px}
+.menu-sprite.b008{background-position:0 -64px}
+.menu-sprite.b009{background-position:-32px -64px}
