@@ -102,7 +102,7 @@
     for(key in state) {
       if(key == "testBox") {
         for(box in state[key]) {
-          $("#" + box).text(state[key][box]);
+          //$("#" + box).text(state[key][box]);
           //TODO: use the status from state to get the color, then set the cell's color to that.
           //console.log(state[key][box]);
           document.getElementById(box).style.backgroundColor = lookupColor(state[key][box]);
