@@ -111,7 +111,7 @@ footer {
     text-indent:-999em
 }
 .menu-sprite{
-    background-image:url(https://raw.githubusercontent.com/legacy-icons/vendor-icons/master/dist/sprite-32x32/vendor-icons.png);
+    background-image:url(static/sprites.png);
     width:32px;
     height:32px;
     margin:0 0
