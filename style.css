@@ -112,18 +112,6 @@ footer {
 }
 .menu-sprite{
     background-image:url(static/sprites.png);
-    width:32px;
-    height:32px;
     margin:0 0
-    //width: 1.875em
+
 }
-.menu-sprite.b000{background-position:0 0}
-.menu-sprite.b001{background-position:-32px 0}
-.menu-sprite.b002{background-position:-64px 0}
-.menu-sprite.b003{background-position:-96px 0}
-.menu-sprite.b004{background-position:0 -32px}
-.menu-sprite.b005{background-position:-32px -32px}
-.menu-sprite.b006{background-position:-64px -32px}
-.menu-sprite.b007{background-position:-96px -32px}
-.menu-sprite.b008{background-position:0 -64px}
-.menu-sprite.b009{background-position:-32px -64px}
