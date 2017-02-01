@@ -111,7 +111,7 @@ footer {
     text-indent:-999em
 }
 .menu-sprite{
-    background-image:url(static/sprites.png);
+    background-image:url(sprites.png);
     margin:0 0
 
 }
