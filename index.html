@@ -1,32 +1,131 @@
+<!DOCTYPE html>
 <html>
-<head>
-<link href="/test1/style.css" rel="stylesheet" type="text/css">
-<link href="/test1/static/sprites.css" rel="stylesheet" type="text/css">
-</head>
-<body>
+  <head>
+    <title>MasterDex 1.0 (alpha)</title>
+    <base target="_top">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    
+    <link href="/test1/static/sprites.css" rel="stylesheet" type="text/css">
+    <script src="/test1/js/pkmnData.js" type="text/javascript"></script>
+    
+    
+    <script src="/test1/js/script.js">
+    </script>
 
-<header>Header</header>
+    <style>
+      label {
+        clear: left;
+      }
+    </style>
+  </head>
+  
+  
+  
+  <body>
+    <section id="canvas" >
+  <header>
+    <div id="main">
+      <h1>MasterDex</h1> 
+      <div id="lgn">
 
-<div style="margin-top: 100px; background-color: #333;"></div>
+         <p style="text-align: right; margin-right: 30px;"><button id="discon">Disconnect</button></p>
+         
+         <div style="display: none" id="myGsignin"><span 
+  class="g-signin"
+  data-cookiepolicy="single_host_origin"
+  data-callback="onSignIn"
+  data-clientid="156329544494-iclr17s8shmsnvf1tkvjokc647q4ka50.apps.googleusercontent.com"
+  data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/drive.appdata">
+  </span></div>
+         
+      </div>
+    </div>
+    
+    
+    
+  <!--Progress bar location-->
+  <div class="progressBar">
+    <!--Example progress bar-->
+    <div id="progBarFill" class="progressBarFill"></div>
+    <p id="progress" class="progress">0.0%</p>
+  </div>
+  
+  <button class="btn" id="reset" onclick="resetData()">Reset Settings</button>
+  <button class="btn" id="checkVersion" onclick="checkDataVersion()">Check Version</button>
+  <button class="btn" id="checkState" onclick="console.log(state)">Check State</button>
+  
+    <div id="in" style="display:none">
+  <form id="settings" action="">
 
-<h2><span  class="line-center unselectable">Test:</span></h2>
-<div id='content'></div>
+    <div class="form-group">
+      <!-- Label and select list -->
+      <label for="selectList">Select List</label>
+      <select class="form-control" id="selectList">
+        <option value="Option 1">Option 1</option>
+        <option value="Option 2">Option 2</option>
+        <option value="Option 3">Option 3</option>
+      </select>
+    </div>
 
+
+    <button class="btn btn-default" type="submit">Save Settings</button>
+    
+  </form>
+  
+  </div>
+  
+</header>
+  
+  
+  <div class="row">
+  <!-- put a sidebar here -->
+ 
+  
+  
+    <div class="column">
+      <div id="content" ></div>
+      
+      <footer id="footer" >
+      
+        <div id="statusPicker" class="pickbar" onclick="getSelectedStatus()"></div>
+        <div class="picker red" onclick="setSelectedStatus(STATUS.RED)"></div>
+        <div class="picker yellow" onclick="setSelectedStatus(STATUS.YELLOW)"></div>
+        <div class="picker green" onclick="setSelectedStatus(STATUS.GREEN)"></div>
+        <div class="picker blue" onclick="setSelectedStatus(STATUS.BLUE)"></div>
+        <div class="picker clear" onclick="setSelectedStatus(STATUS.CLEAR)"></div>
+      
+      </footer>
+    </div>
+
+  </div>
+</section>
 
 <div style="display: none">
-  <li id='cellTemplate' class='pokemonCell unselectable'>
-    <div id='cellNameTemplate' class='pokemonCellName'></div>
-    <img id='cellImageTemplate'>
-    <div id='cellNumberTemplate' class='pokemonCellNumber'>001</div>
+  <li id='cellTemplate' class='CellContainer unselectable' >
+    <div class="Cell" onclick="setCellStatus(this,selectedStatus)">
+      <div id='cellNameTemplate' class='CellName'></div>
+      <div id='cellImageTemplate'></div>
+      <div id='cellNumberTemplate' class='CellNumber'>000</div>
+    </div>
   </li>
   <div id="spacerTemplate" style="margin-top: 100px; background-color: #333;"></div>
-  <h2 id='headingTemplate'><span  class="line-center unselectable">HEADING</span></h2>
+  <h2 id='headingTemplate'><span id='headingText' class="line-center unselectable">HEADING</span></h2>
 </div>
 
-<footer>Footer</footer>
 
-</body>
-<script src="js/pkmnData.js" type="text/javascript"></script>
-<script src="js/script.js" type="text/javascript"></script>
+
+<!-- Place this asynchronous JavaScript just before your </body> tag -->
+<script type="text/javascript">
+  (function() {
+   var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+   po.src = 'https://apis.google.com/js/client:platform.js?onload=loaded';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+ })();
+</script>
+
+  </body>
  
 </html>
+
+
