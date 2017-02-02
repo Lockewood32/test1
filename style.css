@@ -190,7 +190,7 @@ h2:after{
     text-indent:-999em
 }
 .menu-sprite{
-  background-image:url(https://rawgit.com/Lockewood32/test1/master/static/sprites.png);
+  background-image:url(/test1/static/sprites.png);
   margin-left:auto;
   margin-right:auto;
 }
