@@ -132,7 +132,7 @@ function updateProgressBar(amt){
     //return status;
   }
   function setCellStatus(cell, status){//takes an html element and a status object from STATUS
-    console.log(state["testBox"][cell.id] +': ' +status.value);
+    //console.log(state["testBox"][cell.id] +': ' +status.value);
     updateProgressBar(getStatusProgress(state["testBox"][cell.id], status.value));
     state["testBox"][cell.id] = status.value;
     setCellColor(cell, status);
